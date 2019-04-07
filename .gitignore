@@ -1,0 +1,17 @@
+# dependency directory
+node_modules
+
+# compiled directory
+dist
+
+# environment variables
+.env
+
+# vscode directory
+.vscode
+
+#coverage report
+coverage
+.DS_Store
+
+yarn-error.log

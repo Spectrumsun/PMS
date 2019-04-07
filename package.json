@@ -1,0 +1,64 @@
+{
+  "name": "Population_Management_Sysytem",
+  "version": "1.0.0",
+  "description": "population management api",
+  "main": "index.js",
+  "author": "taiwo sunday",
+  "license": "MIT",
+  "dependencies": {
+    "@babel/cli": "^7.2.3",
+    "@babel/core": "^7.4.0",
+    "@babel/node": "^7.2.2",
+    "@babel/preset-env": "^7.4.2",
+    "body-parser": "^1.18.3",
+    "core-js": "^3.0.0",
+    "debug": "^4.1.1",
+    "dotenv": "^7.0.0",
+    "express": "^4.16.4",
+    "express-validator": "^5.3.1",
+    "morgan": "^1.9.1",
+    "pg": "^7.9.0",
+    "pg-hstore": "^2.3.2",
+    "regenerator-runtime": "^0.13.2",
+    "sequelize": "^5.2.11",
+    "sequelize-cli": "^5.4.0"
+  },
+  "devDependencies": {
+    "codecov": "^3.3.0",
+    "eslint": "^5.16.0",
+    "jest": "^24.7.1",
+    "nodemon": "^1.18.10",
+    "supertest": "^4.0.2"
+  },
+  "scripts": {
+    "dev:server": "DEBUG=log nodemon --exec babel-node src/index.js",
+    "build": "yarn clean && yarn build:server",
+    "serve": "node dist/index.js",
+    "clean": "rm -rf dist && mkdir dist",
+    "build:server": "babel src --out-dir dist",
+    "start": "yarn db:migrate && yarn build && yarn serve",
+    "db:migrate": "node_modules/.bin/sequelize db:migrate",
+    "db:rollback": "node_modules/.bin/sequelize db:migrate:undo:all",
+    "db:rollmigrate": "yarn db:rollback && yarn db:migrate",
+    "test": "yarn db:rollmigrate && jest -u --no-cache --detectOpenHandles && codecov"
+  },
+  "jest": {
+    "collectCoverage": true,
+    "collectCoverageFrom": [
+      "src/**/*.js",
+      "!src/index.js"
+    ],
+    "testMatch": [
+      "<rootDir>/src/**/__tests__/**/?(*.)(spec|test)js",
+      "<rootDir>/src/**/?(*.)(spec|test).js"
+    ],
+    "coveragePathIgnorePatterns": [
+      "<rootDir>/src/data/",
+      "<rootDir>/src/database/migrations"
+    ],
+    "testEnvironment": "node"
+  },
+  "engines": {
+    "yarn": "1.15.2"
+  }
+}

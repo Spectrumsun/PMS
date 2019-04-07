@@ -1,0 +1,5 @@
+PORT=port for the server to run on eg 5000
+
+DATABASE_URL=url of postgres database eg postgres://username@host:port/databsename
+
+DATABASE_DIALECT=postgres
